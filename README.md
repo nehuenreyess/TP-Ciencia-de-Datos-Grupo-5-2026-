@@ -14,15 +14,17 @@ El análisis es observacional. Los resultados describen asociaciones y diferenci
 
 ```text
 .
-├── auxiliar/                 # Insumos auxiliares
-├── input/               # Archivos de entrada preparados
-├── output/
-│   ├── tablas/           # Tablas generadas
-│   └── graficos/         # Gráficos generados
-├── raw/            # Datos originales y diccionario
-├── script/              # Scripts de análisis
-├── utils/               # Funciones auxiliares propias
-└── README.md
+├── README.md
+└── tp_grupo05/
+    ├── auxiliar/             # Insumos auxiliares
+    ├── input/                # Bases procesadas
+    ├── output/
+    │   ├── tablas/           # Tablas generadas
+    │   └── graficos/         # Gráficos generados
+    ├── raw/                  # Datos originales y diccionario
+    ├── script/               # Scripts de análisis
+    ├── utils/                # Funciones auxiliares propias
+    └── tp_grupo05.Rproj      # Proyecto de RStudio
 ```
 
 ## Cómo ejecutar
