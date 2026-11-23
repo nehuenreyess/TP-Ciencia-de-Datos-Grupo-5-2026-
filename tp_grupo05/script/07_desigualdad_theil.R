@@ -248,7 +248,13 @@ g11 <- gini_theil |>
   ggplot(aes(x = factor(anio), y = valor, color = muestra, group = muestra)) +
   geom_line(linewidth = 1) +
   geom_point(size = 2.5) +
-  geom_text(aes(label = num(valor, 3)), vjust = -1, size = 3.2, show.legend = FALSE,
+  # las dos series están muy cerca: la de arriba (con outliers) lleva la
+  # etiqueta arriba y la de abajo (sin outliers), abajo, para que no se pisen
+  geom_text(data = \(d) filter(d, muestra == "Con outliers bajos"),
+            aes(label = num(valor, 3)), vjust = -1, size = 3.2, show.legend = FALSE,
+            family = fuentes$texto) +
+  geom_text(data = \(d) filter(d, muestra == "Sin outliers bajos"),
+            aes(label = num(valor, 3)), vjust = 2, size = 3.2, show.legend = FALSE,
             family = fuentes$texto) +
   facet_wrap(~ indice, ncol = 2) +
   scale_color_manual(values = c("Sin outliers bajos" = col_destaque,
@@ -267,6 +273,7 @@ g11 <- gini_theil |>
   ) +
   theme_tp(fuentes) +
   theme(legend.position = "top", legend.justification = "left",
+        legend.text = element_text(size = rel(1)),
         panel.grid.major.x = element_blank())
 
 g11
