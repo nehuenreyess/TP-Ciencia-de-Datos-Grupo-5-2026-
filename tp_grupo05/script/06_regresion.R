@@ -113,12 +113,17 @@ g07 <- brechas |>
                color = "gray70", linewidth = 1.2) +
   geom_point(aes(x = bruta_pct), color = gris_suave, size = 3.5) +
   geom_point(aes(x = ajustada_pct), color = col_destaque, size = 3.5) +
-  geom_text(aes(x = bruta_pct, label = paste0(num(bruta_pct, 1), "%")),
-            vjust = -1.2, size = 3.2, color = gris_texto, family = fuentes$texto) +
-  geom_text(aes(x = ajustada_pct, label = paste0(num(ajustada_pct, 1), "%")),
-            vjust = -1.2, size = 3.2, color = col_destaque, fontface = "bold",
+  # cada etiqueta va hacia afuera del segmento (la del valor mayor a la
+  # derecha y la del menor a la izquierda), para que no se pisen cuando los
+  # dos puntos están cerca
+  geom_text(aes(x = bruta_pct, label = paste0(num(bruta_pct, 1), "%"),
+                hjust = if_else(bruta_pct > ajustada_pct, -0.3, 1.3)),
+            size = 3.2, color = gris_texto, family = fuentes$texto) +
+  geom_text(aes(x = ajustada_pct, label = paste0(num(ajustada_pct, 1), "%"),
+                hjust = if_else(ajustada_pct > bruta_pct, -0.3, 1.3)),
+            size = 3.2, color = col_destaque, fontface = "bold",
             family = fuentes$texto) +
-  scale_x_continuous(limits = c(-50, 75), breaks = seq(-50, 75, 25),
+  scale_x_continuous(limits = c(-58, 82), breaks = seq(-50, 75, 25),
                      labels = \(x) paste0(ifelse(x > 0, "+", ""), x, "%")) +
   labs(
     title = paste0("Al controlar por las demás características, la brecha a favor<br>de las privadas pasa de ",
