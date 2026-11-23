@@ -45,7 +45,7 @@ g05 <- comparacion |>
   scale_x_continuous(limits = c(-6, 8), breaks = seq(-6, 8, 2),
                      labels = \(x) paste0(ifelse(x > 0, "+", ""), x, "%")) +
   labs(
-    title = "Excluir los salarios atípicamente bajos modifica poco los estadísticos centrales",
+    title = "Excluir los salarios atípicamente bajos modifica poco<br>los estadísticos centrales",
     subtitle = str_wrap(paste0("Cambio porcentual de cada estadístico después de excluir los valores ",
                                "extremos bajos, respecto de la base con todos los salarios registrados."),
                         width = 115),

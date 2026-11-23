@@ -121,7 +121,7 @@ g07 <- brechas |>
   scale_x_continuous(limits = c(-50, 75), breaks = seq(-50, 75, 25),
                      labels = \(x) paste0(ifelse(x > 0, "+", ""), x, "%")) +
   labs(
-    title = paste0("Al controlar por las demás características, la brecha a favor de las privadas pasa de ",
+    title = paste0("Al controlar por las demás características, la brecha a favor<br>de las privadas pasa de ",
                    num(brecha_privada$bruta_pct, 1), "% a ",
                    pintar(paste0(num(brecha_privada$ajustada_pct, 1), "%"), col_destaque)),
     subtitle = str_wrap(paste0("Diferencia bruta (gris) y ajustada (naranja), a partir de regresiones del ",
