@@ -1,6 +1,6 @@
 # 00 - Corre todos los scripts en orden
 # Abrir el proyecto tp_grupo05.Rproj antes de correr este script, así la
-# carpeta de trabajo es la raíz del repositorio y las rutas relativas funcionan.
+# carpeta de trabajo es tp_grupo05 y las rutas relativas funcionan.
 
 scripts <- c(
   "script/01_preparacion_base.R",
