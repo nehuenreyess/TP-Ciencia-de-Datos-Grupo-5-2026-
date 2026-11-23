@@ -16,7 +16,7 @@ archivo_base <- if (file.exists("raw/base_araucano.csv")) {
 base_raw <- read_csv(archivo_base, show_col_types = FALSE)
 
 # La disciplina tiene 38 categorías: las traemos del diccionario.
-cod_disciplina <- read_excel("raw/diccionario.xlsx", sheet = "cod_disciplina")
+cod_disciplina <- read_excel("auxiliar/diccionario.xlsx", sheet = "cod_disciplina")
 
 dim(base_raw)
 
