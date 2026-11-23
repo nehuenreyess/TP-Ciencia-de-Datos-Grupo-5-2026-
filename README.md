@@ -77,5 +77,8 @@ El trabajo combina herramientas descriptivas e inferenciales:
 
 ## Reproducibilidad
 
-El script principal ejecuta los módulos de preparación, descriptivas, diagnóstico de faltantes y outliers, análisis inferencial, regresiones y desigualdad. Los resultados generados se guardan en las carpetas correspondientes de `output/`.
+El script principal ejecuta los módulos de preparación, descriptivas, diagnóstico de faltantes y outliers, análisis inferencial, regresiones y desigualdad.
 
+Los archivos intermedios se guardan en input/, mientras que las tablas y los gráficos generados se guardan en output/tablas/ y output/graficos/, respectivamente.
+
+Para reproducir el análisis, alcanza con descargar el repositorio, abrir el proyecto de RStudio y ejecutar script/00_correr_todo.R.
