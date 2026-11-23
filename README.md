@@ -27,38 +27,52 @@ El análisis es observacional. Los resultados describen asociaciones y diferenci
     └── tp_grupo05.Rproj      # Proyecto de RStudio
 ```
 
-## Cómo ejecutar
+## Cómo ejecutar el proyecto
 
-1. Clonar o descargar este repositorio.
-2. Abrir la carpeta tp_grupo05/ en RStudio mediante el archivo tp_grupo05.Rproj.
-3. Instalar, una sola vez, las dependencias necesarias:
+Para reproducir el análisis, seguir estos pasos:
+
+1. Descargar o clonar este repositorio.
+2. Ingresar en la carpeta `tp_grupo05/`.
+3. Abrir el archivo `tp_grupo05.Rproj` con RStudio.
+4. Instalar los paquetes necesarios (solo la primera vez):
 
 ```r
 install.packages(c(
-  "tidyverse", "readxl", "scales", "ggtext",
-  "showtext", "rstatix", "lmtest", "sandwich"
+  "tidyverse",
+  "readxl",
+  "scales",
+  "ggtext",
+  "showtext",
+  "rstatix",
+  "lmtest",
+  "sandwich"
 ))
 ```
 
-4. Colocar los archivos de datos requeridos en `raw/` (ver la sección siguiente).
-5. Ejecutar desde la raíz del proyecto:
+5. Abrir el archivo `script/00_correr_todo.R` y presionar **Source** para ejecutar todos los scripts en orden.
+
+También se puede ejecutar directamente desde la consola de RStudio:
 
 ```r
 source("script/00_correr_todo.R")
 ```
-   
-Los scripts utilizan rutas relativas al directorio del proyecto. No es necesario configurar `setwd()`.
+
+Los scripts utilizan rutas relativas al directorio del proyecto. Por lo tanto, es necesario abrir `tp_grupo05.Rproj` antes de ejecutar el análisis. No se requiere configurar manualmente el directorio de trabajo mediante `setwd()`.
+
+La ejecución genera automáticamente las bases intermedias en `input/`, las tablas en `output/tablas/` y los gráficos en `output/graficos/`.
 
 ## Datos
 
-La base de microdatos y su diccionario deben estar disponibles localmente en:
+Los archivos originales necesarios para reproducir el análisis están incluidos en el repositorio, dentro de la carpeta `tp_grupo05/raw/`:
 
-- `tp_grupo05/raw/base_araucano.csv.gz`
-- `tp_grupo05/raw/diccionario.xlsx`
+- `base_araucano.csv.gz`: base de datos original comprimida en formato GZIP.
+- `diccionario.xlsx`: diccionario de variables y categorías.
 
-La base comprimida se lee directamente desde R. El diccionario debe conservar la hoja cod_disciplina, utilizada para incorporar las etiquetas de las disciplinas.
+La base comprimida se importa directamente desde R, sin necesidad de descomprimirla manualmente.
 
-**Importante:** el análisis no es reproducible desde cero hasta que ambos archivos estén presentes en `raw/`.
+El diccionario contiene la hoja `cod_disciplina`, utilizada para incorporar las etiquetas correspondientes a las disciplinas.
+
+No es necesario descargar archivos adicionales ni modificar las rutas de acceso para ejecutar los scripts.
 
 ## Métodos
 
