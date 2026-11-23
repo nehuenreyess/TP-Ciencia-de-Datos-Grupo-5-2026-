@@ -14,7 +14,7 @@ El análisis es observacional. Los resultados describen asociaciones y diferenci
 
 ```text
 .
-├── auxiliar/                 # Insumos auxiliares # Datos originales y diccionario
+├── auxiliar/                 # Insumos auxiliares
 ├── input/               # Archivos de entrada preparados
 ├── output/
 │   ├── tablas/           # Tablas generadas
