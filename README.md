@@ -2,7 +2,7 @@
 
 **Grupo 5 · Facultad de Ciencias Económicas · Universidad de Buenos Aires**
 
-Integrantes
+## Integrantes
 
 . Nehuén Federico Reyes Bartulos
 
