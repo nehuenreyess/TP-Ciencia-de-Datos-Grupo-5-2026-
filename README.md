@@ -104,3 +104,13 @@ El script principal ejecuta los módulos de preparación, descriptivas, diagnós
 Los archivos intermedios se guardan en input/, mientras que las tablas y los gráficos generados se guardan en output/tablas/ y output/graficos/, respectivamente.
 
 Para reproducir el análisis, alcanza con descargar el repositorio, abrir el proyecto de RStudio y ejecutar script/00_correr_todo.R.
+
+## Fuente de datos
+
+**Base utilizada:** Graduados universitarios del sistema Araucano (2016-2018).
+
+**Fuente original:** [Datos Argentina - Graduados universitarios del sistema Araucano](https://datos.produccion.gob.ar/dataset/graduados-universitarios-del-sistema-araucano-2016-2018)
+
+**Período de información sociolaboral:** 2019-2021.
+
+**Unidad de observación:** persona-año. Cada graduado cuenta con tres registros, correspondientes a los años 2019, 2020 y 2021.
