@@ -130,7 +130,7 @@ g04 <- con_salario |>
   scale_fill_manual(values = c("Bajo" = col_destaque, "No" = col_gris, "Alto" = col_estatal)) +
   scale_x_log10(breaks = c(1, 100, 1e4, 1e6),
                 labels = c("$1", "$100", "$10.000", "$1.000.000")) +
-  scale_y_continuous(label_number(big.mark = ".", decimal.mark = ",")) +
+  scale_y_continuous(labels = label_number(big.mark = ".", decimal.mark = ",")) +
   labs(
     title = paste0("Se excluyen los salarios atípicamente bajos (", num(pct_bajos_2021, 1),
                    "%) y se mantienen los altos"),
