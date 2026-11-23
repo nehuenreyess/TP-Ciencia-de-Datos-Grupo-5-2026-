@@ -71,7 +71,7 @@ g01 <- salario_2021 |>
            size = 3.3, fontface = "bold", family = fuentes$texto) +
   scale_x_log10(breaks = c(1, 100, 1e4, 1e6),
                 labels = c("$1", "$100", "$10.000", "$1.000.000")) +
-  scale_y_continuous(labels = label_number(big.mark = ".")) +
+  scale_y_continuous(label_number(big.mark = ".", decimal.mark = ",")) +
   labs(
     title = paste0("El salario es muy asimétrico: la ", pintar("media", col_destaque),
                    " supera a la mediana"),
