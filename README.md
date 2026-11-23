@@ -14,12 +14,12 @@ El análisis es observacional. Los resultados describen asociaciones y diferenci
 
 ```text
 .
-├── raw/                 # Datos originales y diccionario
-├── auxiliar/            # Insumos auxiliares
+├── auxiliar/                 # Insumos auxiliares # Datos originales y diccionario
 ├── input/               # Archivos de entrada preparados
 ├── output/
 │   ├── tablas/           # Tablas generadas
 │   └── graficos/         # Gráficos generados
+├── raw/            # Datos originales y diccionario
 ├── script/              # Scripts de análisis
 ├── utils/               # Funciones auxiliares propias
 └── README.md
@@ -51,7 +51,7 @@ Los scripts utilizan rutas relativas al directorio del proyecto. No es necesario
 
 La base de microdatos y su diccionario deben estar disponibles localmente en:
 
-- `raw/base_araucano.csv`
+- `raw/base_araucano.csv.gz`
 - `raw/diccionario.xlsx`
 
 Por el tamaño del archivo de microdatos, puede que no esté versionado directamente en GitHub. En ese caso, descargar la base desde la fuente oficial indicada en la documentación del trabajo y guardarla con el nombre y la ruta anteriores. No modificar la base original. El diccionario debe conservar la hoja `cod_disciplina`.
