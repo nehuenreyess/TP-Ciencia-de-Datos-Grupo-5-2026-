@@ -1,0 +1,10 @@
+variable,descripcion,tipo,faltantes,pct_faltantes
+salario,Remuneración bruta de noviembre (pesos corrientes),Numérica,341616,41.6
+anio,"Año de la observación (2019, 2020 o 2021)",Numérica,0,0
+edad,Edad en el año de la observación (anio - anionac),Numérica (construida),1188,0.1
+tipo_titulo,"Pregrado, Tecnicatura, Grado y profesorado, Posgrado",Categórica (4),0,0
+gestion,Gestión de la institución: Estatal o Privada,Categórica (2),0,0
+genero,Género: Mujer o Varón,Categórica (2),0,0
+region,Región de residencia (7 regiones),Categórica (7),0,0
+rama,Rama del conocimiento del título,Categórica (6),0,0
+disciplina,Disciplina del título,Categórica (38),0,0
