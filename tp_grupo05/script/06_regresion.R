@@ -165,6 +165,33 @@ a02 <- aporte_r2 |>
 a02
 guardar_grafico(a02, "a02_aporte_r2.png", ancho_cm = 18, alto_cm = 10)
 
+# Gráfico 10: brecha privada vs estatal por tipo de título (regresión con interacción)
+g10 <- brecha_titulo |>
+  mutate(tipo_titulo = reorder(tipo_titulo, brecha_pct),
+         destacado = brecha_pct == max(brecha_pct)) |>
+  ggplot(aes(x = brecha_pct, y = tipo_titulo, fill = destacado)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = paste0("+", num(brecha_pct, 1), "%")), hjust = -0.15, size = 3.4,
+            color = gris_titulo, family = fuentes$texto) +
+  scale_fill_manual(values = c("TRUE" = col_destaque, "FALSE" = col_estatal)) +
+  scale_x_continuous(limits = c(0, 37), breaks = seq(0, 35, 5),
+                     labels = \(x) paste0(num(x), "%")) +
+  labs(
+    title = "La brecha privada-estatal cambia según el tipo de título",
+    subtitle = str_wrap(paste0("Diferencia estimada del salario de graduados de instituciones privadas ",
+                               "frente a estatales, por tipo de título. Regresión log(salario) ~ tipo de ",
+                               "título × gestión, 2021."), width = 110),
+    x = "Diferencia estimada del salario, privada frente a estatal (%)",
+    y = NULL,
+    caption = str_wrap(paste0("Diferencias calculadas como exp(coeficiente) - 1. Errores estándar robustos (HC1). ",
+                              "Se excluyen los salarios atípicamente bajos. ", fuente_datos), width = 120)
+  ) +
+  theme_tp(fuentes) +
+  theme(panel.grid.major.y = element_blank())
+
+g10
+guardar_grafico(g10, "g10_brecha_gestion_por_titulo.png", ancho_cm = 20, alto_cm = 11)
+
 tabla_interaccion <- tibble(
   termino = rownames(coef_e2),
   estimacion = coef_e2[, 1],

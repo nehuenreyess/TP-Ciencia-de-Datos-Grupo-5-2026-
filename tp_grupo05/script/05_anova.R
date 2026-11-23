@@ -137,6 +137,30 @@ g06 <- base_rel |>
 g06
 guardar_grafico(g06, "g06_exploratorio_titulo_gestion.png", ancho_cm = 25, alto_cm = 14)
 
+# Gráfico 9: mediana del salario por tipo de título (diapositiva del ANOVA)
+g09 <- desc_titulo |>
+  mutate(tipo_titulo = reorder(tipo_titulo, mediana),
+         destacado = tipo_titulo == "Posgrado") |>
+  ggplot(aes(x = mediana / 1000, y = tipo_titulo, fill = destacado)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = paste0("$", num(mediana))), hjust = -0.1, size = 3.4,
+            color = gris_titulo, family = fuentes$texto) +
+  scale_fill_manual(values = c("TRUE" = col_destaque, "FALSE" = col_estatal)) +
+  scale_x_continuous(limits = c(0, 210), breaks = seq(0, 200, 50),
+                     labels = \(x) num(x)) +
+  labs(
+    title = "La mediana salarial difiere según el tipo de título",
+    subtitle = "Salario bruto mediano de noviembre de 2021. Graduados con empleo asalariado registrado.",
+    x = "Salario bruto mediano (miles de pesos corrientes)",
+    y = NULL,
+    caption = str_wrap(paste0("Se excluyen los salarios atípicamente bajos. ", fuente_datos), width = 120)
+  ) +
+  theme_tp(fuentes) +
+  theme(panel.grid.major.y = element_blank())
+
+g09
+guardar_grafico(g09, "g09_mediana_por_titulo.png", ancho_cm = 20, alto_cm = 11)
+
 write_csv(eta_por_anio, "output/tablas/05_eta_por_anio.csv")
 write_csv(desc_titulo, "output/tablas/05_descriptivas_titulo.csv")
 write_csv(tabla_anova, "output/tablas/05_anova_titulo.csv")

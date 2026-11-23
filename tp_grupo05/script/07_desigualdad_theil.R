@@ -239,6 +239,39 @@ g08 <- ggplot() +
 g08
 guardar_grafico(g08, "g08_comunicativo_theil.png", ancho_cm = 22, alto_cm = 15)
 
+# Gráfico 11: Gini y Theil por año, con y sin outliers bajos
+# El eje vertical empieza en 0: con un eje recortado, cambios de menos de
+# 0,01 parecerían grandes.
+g11 <- gini_theil |>
+  pivot_longer(c(gini, theil), names_to = "indice", values_to = "valor") |>
+  mutate(indice = if_else(indice == "gini", "Coeficiente de Gini", "Índice de Theil")) |>
+  ggplot(aes(x = factor(anio), y = valor, color = muestra, group = muestra)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2.5) +
+  geom_text(aes(label = num(valor, 3)), vjust = -1, size = 3.2, show.legend = FALSE,
+            family = fuentes$texto) +
+  facet_wrap(~ indice, ncol = 2) +
+  scale_color_manual(values = c("Sin outliers bajos" = col_destaque,
+                                "Con outliers bajos" = gris_suave)) +
+  scale_y_continuous(limits = c(0, 0.45), labels = \(x) num(x, 2)) +
+  labs(
+    title = "La desigualdad salarial casi no cambia entre 2019 y 2021",
+    subtitle = str_wrap(paste0("Coeficiente de Gini e índice de Theil del salario bruto de noviembre, por año. ",
+                               "Ninguno de los dos índices depende del nivel de precios, por eso se pueden ",
+                               "comparar entre años sin deflactar."), width = 115),
+    x = NULL,
+    y = "Valor del índice",
+    color = NULL,
+    caption = str_wrap(paste0("Graduados con empleo asalariado registrado. El eje vertical empieza en 0. ",
+                              fuente_datos), width = 130)
+  ) +
+  theme_tp(fuentes) +
+  theme(legend.position = "top", legend.justification = "left",
+        panel.grid.major.x = element_blank())
+
+g11
+guardar_grafico(g11, "g11_gini_theil_por_anio.png", ancho_cm = 22, alto_cm = 12)
+
 write_csv(gini_theil, "output/tablas/07_gini_theil_por_anio.csv")
 write_csv(theil_por_anio, "output/tablas/07_theil_entre_por_anio.csv")
 write_csv(theil_titulo$detalle, "output/tablas/07_theil_detalle_titulo_2021.csv")
