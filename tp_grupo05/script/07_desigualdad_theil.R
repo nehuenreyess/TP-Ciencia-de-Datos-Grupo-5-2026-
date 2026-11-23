@@ -87,49 +87,153 @@ barras <- theil_por_anio |>
 nota_gestion <- paste0("aunque en promedio los graduados de privadas ganan un ",
                        num(brecha_media, 0), "% más")
 
-g08 <- ggplot(barras) +
-  geom_rect(aes(xmin = entre, xmax = 100, ymin = 0, ymax = 1),
-            fill = col_gris, color = "white", linewidth = 0.8) +
-  geom_rect(aes(xmin = 0, xmax = entre, ymin = 0, ymax = 1, fill = color_entre),
-            color = "white", linewidth = 0.8) +
-  scale_fill_identity() +
-  geom_text(aes(x = entre + 1, y = 0.5, label = etiqueta_entre, color = color_texto),
-            hjust = 0, fontface = "bold", size = 3.6, family = fuentes$texto) +
-  scale_color_identity() +
-  geom_text(aes(x = 99, y = 0.5, label = etiqueta_dentro),
-            hjust = 1, color = gris_texto, size = 3.6, family = fuentes$texto) +
-  geom_text(data = filter(barras, variable == "gestion"),
-            aes(x = entre + 6, y = 0.5, label = nota_gestion),
-            hjust = 0, color = gris_texto, fontface = "italic", size = 3.3,
-            family = fuentes$texto) +
-  facet_wrap(~ nombre, ncol = 1) +
-  scale_x_continuous(limits = c(0, 100), breaks = seq(0, 100, 20),
-                     labels = \(x) paste0(x, "%"), expand = c(0, 0)) +
-  scale_y_continuous(expand = c(0, 0)) +
-  labs(
-    title = paste0("Ninguna característica de los graduados da cuenta de ",
-                   pintar("más del 9%", col_destaque), "<br>de la desigualdad salarial"),
-    subtitle = str_wrap(paste0("Cada barra divide la desigualdad salarial total (índice de Theil, 2021) ",
-                               "en la parte explicada por diferencias entre grupos y la parte que ocurre ",
-                               "dentro de cada grupo."),
-                        width = 115),
-    x = "Porcentaje de la desigualdad salarial total (índice de Theil)",
-    y = NULL,
-    caption = str_wrap(paste0("Graduados con empleo asalariado registrado en noviembre de 2021; se excluyen ",
-                              "los salarios atípicamente bajos. En 2019 y 2020 el valor máximo fue de ",
-                              num(maximo_previo, 1), "%. ", fuente_datos),
-                       width = 135)
+# Preparación de posiciones verticales.
+# La característica con mayor porcentaje queda arriba.
+
+barras_plot <- barras |>
+  mutate(y = rev(seq_len(n())))
+
+# Gráfico G08: descomposición del índice de Theil.
+
+g08 <- ggplot() +
+  
+  # Fondo gris: desigualdad dentro de los grupos.
+  geom_rect(
+    data = barras_plot,
+    aes(
+      xmin = 0,
+      xmax = 100,
+      ymin = y - 0.34,
+      ymax = y + 0.34
+    ),
+    fill = col_gris,
+    color = "white",
+    linewidth = 0.8
   ) +
+  
+  # Segmento naranja: desigualdad entre grupos.
+  geom_rect(
+    data = barras_plot,
+    aes(
+      xmin = 0,
+      xmax = entre,
+      ymin = y - 0.34,
+      ymax = y + 0.34,
+      fill = color_entre
+    ),
+    color = "white",
+    linewidth = 0.8
+  ) +
+  
+  scale_fill_identity() +
+  
+  # Etiquetas del porcentaje entre grupos.
+  geom_text(
+    data = barras_plot,
+    aes(
+      x = entre + 1.2,
+      y = y,
+      label = etiqueta_entre,
+      color = color_texto
+    ),
+    hjust = 0,
+    fontface = "bold",
+    size = 3.6,
+    family = fuentes$texto
+  ) +
+  
+  scale_color_identity() +
+  
+  # Etiquetas del porcentaje dentro de los grupos.
+  geom_text(
+    data = barras_plot,
+    aes(
+      x = 99,
+      y = y,
+      label = etiqueta_dentro
+    ),
+    hjust = 1,
+    color = gris_texto,
+    size = 3.6,
+    family = fuentes$texto
+  ) +
+  
+  # Eje horizontal.
+  scale_x_continuous(
+    limits = c(0, 100),
+    breaks = seq(0, 100, 20),
+    labels = \(x) paste0(num(x, 0), "%"),
+    expand = c(0, 0)
+  ) +
+  
+  # Eje vertical con las seis características.
+  scale_y_continuous(
+    breaks = seq_len(nrow(barras_plot)),
+    labels = as.character(
+      barras_plot$nombre[order(barras_plot$y)]
+    ),
+    limits = c(0.5, nrow(barras_plot) + 0.5),
+    expand = c(0, 0)
+  ) +
+  
+  labs(
+    title = paste0(
+      "Ninguna característica de los graduados da cuenta de ",
+      pintar("más del 9%", col_destaque),
+      "<br>de la desigualdad salarial"
+    ),
+    
+    subtitle = str_wrap(
+      paste0(
+        "Cada barra divide la desigualdad salarial total (índice de Theil, 2021) ",
+        "en la parte explicada por diferencias entre grupos y la parte que ocurre ",
+        "dentro de cada grupo."
+      ),
+      width = 115
+    ),
+    
+    x = "Porcentaje de la desigualdad salarial total (índice de Theil)",
+    
+    y = NULL,
+    
+    caption = str_wrap(
+      paste0(
+        "Graduados con empleo asalariado registrado en noviembre de 2021; ",
+        "se excluyen los salarios atípicamente bajos. ",
+        "En 2019 y 2020 el valor máximo fue de ",
+        num(maximo_previo, 1), "%. ",
+        "La brecha salarial media entre gestión privada y estatal fue de ",
+        num(brecha_media, 0), "%. ",
+        fuente_datos
+      ),
+      width = 135
+    )
+  ) +
+  
   theme_tp(fuentes) +
+  
   theme(
-    panel.grid.major = element_blank(),
-    axis.text.y = element_blank(),
-    axis.line.x = element_line(color = "#999999", linewidth = 0.4),
-    axis.ticks.x = element_line(color = "#999999", linewidth = 0.4),
-    axis.title.x = element_text(margin = margin(t = 8)),
-    strip.text = element_text(hjust = 0, face = "bold", size = rel(1.05),
-                              color = gris_titulo, margin = margin(t = 4, b = 3)),
-    panel.spacing.y = unit(6, "pt")
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    
+    axis.text.y = element_text(
+      color = gris_titulo,
+      face = "bold"
+    ),
+    
+    axis.line.x = element_line(
+      color = "#999999",
+      linewidth = 0.4
+    ),
+    
+    axis.ticks.x = element_line(
+      color = "#999999",
+      linewidth = 0.4
+    ),
+    
+    axis.title.x = element_text(
+      margin = margin(t = 8)
+    )
   )
 
 g08
