@@ -18,6 +18,14 @@ Analizar cómo se relacionan las características educativas y sociodemográfica
 
 El análisis es observacional. Los resultados describen asociaciones y diferencias entre grupos; no deben interpretarse como efectos causales.
 
+Se plantean tres hipótesis principales:
+
+H1 — Tipo de título: los salarios presentan diferencias entre las distintas categorías de título universitario.
+
+H2 — Gestión y tipo de título: la diferencia salarial entre graduados de instituciones privadas y estatales varía según el tipo de título obtenido.
+
+H3 — Desigualdad: la proporción de desigualdad salarial explicada por diferencias entre grupos es mayor para disciplina y región que para gestión.
+
 ## Estructura del repositorio
 
 ```text
