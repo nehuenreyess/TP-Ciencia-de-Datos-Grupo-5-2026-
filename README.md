@@ -71,10 +71,10 @@ La ejecución genera automáticamente las bases intermedias en `input/`, las tab
 
 ## Datos
 
-Los archivos originales necesarios para reproducir el análisis están incluidos en el repositorio, dentro de la carpeta `tp_grupo05/raw/`:
+Los archivos originales necesarios para reproducir el análisis están incluidos en el repositorio, dentro de la carpeta `tp_grupo05/raw/` y `tp_grupo05/auxiliar/`:
 
-- `base_araucano.csv.gz`: base de datos original comprimida en formato GZIP.
-- `diccionario.xlsx`: diccionario de variables y categorías.
+- `tp_grupo05/raw/base_araucano.csv.gz`: base de datos original comprimida en formato GZIP.
+- `tp_grupo05/auxiliar/diccionario.xlsx`: diccionario de variables y categorías.
 
 La base comprimida se importa directamente desde R, sin necesidad de descomprimirla manualmente.
 
