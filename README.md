@@ -2,6 +2,14 @@
 
 **Grupo 5 · Facultad de Ciencias Económicas · Universidad de Buenos Aires**
 
+Integrantes
+
+. Nehuén Federico Reyes Bartulos
+
+. Martina Sendrowicz
+
+. Ezequiel Usle
+
 ## Tema
 Diferencias salariales entre graduados universitarios e inserción laboral.
 
