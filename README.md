@@ -30,7 +30,7 @@ El análisis es observacional. Los resultados describen asociaciones y diferenci
 ## Cómo ejecutar
 
 1. Clonar o descargar este repositorio.
-2. Abrir el proyecto desde RStudio.
+2. Abrir la carpeta tp_grupo05/ en RStudio mediante el archivo tp_grupo05.Rproj.
 3. Instalar, una sola vez, las dependencias necesarias:
 
 ```r
@@ -46,17 +46,17 @@ install.packages(c(
 ```r
 source("script/00_correr_todo.R")
 ```
-
+   
 Los scripts utilizan rutas relativas al directorio del proyecto. No es necesario configurar `setwd()`.
 
 ## Datos
 
 La base de microdatos y su diccionario deben estar disponibles localmente en:
 
-- `raw/base_araucano.csv.gz`
-- `raw/diccionario.xlsx`
+- `tp_grupo05/raw/base_araucano.csv.gz`
+- `tp_grupo05/raw/diccionario.xlsx`
 
-Por el tamaño del archivo de microdatos, puede que no esté versionado directamente en GitHub. En ese caso, descargar la base desde la fuente oficial indicada en la documentación del trabajo y guardarla con el nombre y la ruta anteriores. No modificar la base original. El diccionario debe conservar la hoja `cod_disciplina`.
+La base comprimida se lee directamente desde R. El diccionario debe conservar la hoja cod_disciplina, utilizada para incorporar las etiquetas de las disciplinas.
 
 **Importante:** el análisis no es reproducible desde cero hasta que ambos archivos estén presentes en `raw/`.
 
